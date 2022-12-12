@@ -106,9 +106,10 @@ class MemberController extends Controller
             'name' => 'required'
         ]);
 
+
         $post = Member::create([
             'member_id' => $request->member_id,
-            'parent' => $request->parent,
+            'parent_id' => $request->parent_id,
             'name' => $request->name,
         ]);
 
@@ -161,7 +162,7 @@ class MemberController extends Controller
     public function edit($id)
     {
         $data = Member::where('id', $id)->first();
-        $members = Member::all();
+        $members = Member::where('id','!=', $id)->get();
         return view('edit', compact('members', 'data'));
     }
 
@@ -175,6 +176,8 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $post = Member::where('id',$id);
+        $id = $request->parent_id;
+        $parents = Member::with('parents')->where('id', $id)->first();
         $post->update([
             'parent_id' => $request->parent_id,
         ]);

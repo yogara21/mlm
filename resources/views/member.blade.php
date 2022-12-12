@@ -23,7 +23,6 @@
                             <th style="width: 10px">#</th>
                             <th>Member ID</th>
                             <th>Nama</th>
-                            <th>Level</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,8 +33,7 @@
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td>{{ $member->member_id }}</td>
-                            <td>{{ $member->name }}</td>
-                            <td></td>                      
+                            <td>{{ $member->name }}</td>                  
                         </tr>
                     @empty
                         <tr>
